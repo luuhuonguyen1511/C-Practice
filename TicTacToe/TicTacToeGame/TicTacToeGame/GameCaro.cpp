@@ -3,7 +3,7 @@
 using namespace std;
 
 void drawBoard(char board[3][3]);
-void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10]);
+void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10], string result);
 bool check(char board[3][3], int a, int b);
 int gameStatus(char board[3][3]);
 
@@ -18,8 +18,8 @@ void drawBoard(char board[3][3]) {
 }
 
 bool check(char board[3][3], int a, int b) {
-	if (board[a][b] != ' ') return false;
-	else return true;
+	if (board[a][b] == ' ') return true;
+	else return false;
 }
 
 int gameStatus(char board[3][3]) {
@@ -92,24 +92,29 @@ int gameStatus(char board[3][3]) {
 	return win;
 }
 
-void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10]) {
+void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10], string result) {
 	int player = 1;
 	int position, row, column;
 	int count = 0;
-	
-	string result = "playing";
 
 	do
 	{
 		switch (player)
 		{
 		case 1:
-			cout << "Your turn " << nameOfPlayer1 << " - O: ";
-			cin >> position;
-			
-			row = position / 10 - 1;
-			column = position % 10 - 1;
-			board[row][column] = 'O';
+			do {
+				cout << "Your turn " << nameOfPlayer1 << " - O: ";
+				cin >> position;
+
+				row = position / 10 - 1;
+				column = position % 10 - 1;
+
+				if (check(board, row, column)) {
+					board[row][column] = 'O';
+					break;
+				}
+			} while (check(board, row, column)==false);
+
 			system("cls");
 			drawBoard(board);
 
@@ -117,12 +122,19 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 			player++;
 			break;
 		case 2:
-			cout << "Your turn " << nameOfPlayer2 << " - X: ";
-			cin >> position;
+			do {
+				cout << "Your turn " << nameOfPlayer2 << " - X: ";
+				cin >> position;
 
-			row = position / 10 - 1;
-			column = position % 10 - 1;
-			board[row][column] = 'X';
+				row = position / 10 - 1;
+				column = position % 10 - 1;
+
+				if (check(board, row, column)) {
+					board[row][column] = 'X';
+					break;
+				}
+			} while (check(board, row, column) == false);
+
 			system("cls");
 			drawBoard(board);
 
@@ -133,6 +145,7 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 
 		if (count == 9) {
 			cout << "DRAW GAME!!!"<<endl;
+			result = 'draw';
 			break;
 		}
 
@@ -153,30 +166,34 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 
 int main() {
 
-	system("cls");
-	
-	char choice;
+	char choice, confirm;
 	static char nameOfPlayer1[10]; 
 	static char nameOfPlayer2[10];
 	static char board[3][3] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
-	
-	cout << "Welcome To Tic-tac-toe game! Play with your way!"<<endl;
-	cout << "If you find any problem, please contact john.nguyen@gameloft.com"<<endl;
+	static string result = "playing";
+
+	do {
+	system("cls");
+	cout << "Welcome To Tic-tac-toe game! Play with your way!" << endl;
+	cout << "If you find any problem, please contact john.nguyen@gameloft.com" << endl;
 
 	cout << "SELECT YOUR MODE (1 - PLAY GAME, OTHERS - EXIT GAME): "; cin >> choice;
 
-	switch (choice)
-	{
-	case '1':
-		cout << "Enter Player 1 Name: "; cin>>nameOfPlayer1;
-		cout << "Enter Player 2 Name: "; cin>>nameOfPlayer2;
+		switch (choice)
+		{
+		case '1':
+			cout << "Enter Player 1 Name: "; cin >> nameOfPlayer1;
+			cout << "Enter Player 2 Name: "; cin >> nameOfPlayer2;
 
-		drawBoard(board);
-		startGame(board, nameOfPlayer1, nameOfPlayer2);
-		break;
-	default:
-		break;
-	}
+			drawBoard(board);
+			startGame(board, nameOfPlayer1, nameOfPlayer2, result);
+			break;
+		default:
+			break;
+		}
+		
+		cout << "Do you wanna play again? (y/n): "; cin >> confirm;
+	} while (confirm == 'y' || confirm == 'Y');
 	
 	system("pause");
 	return 0;

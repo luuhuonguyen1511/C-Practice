@@ -1,7 +1,9 @@
 ﻿  GameCaro.cpp
-d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(142): warning C4305: 'argument': truncation from 'int' to 'char'
-d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(142): warning C4309: 'argument': truncation of constant value
-d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(145): warning C4305: 'argument': truncation from 'int' to 'char'
-d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(145): warning C4309: 'argument': truncation of constant value
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(148): warning C4305: 'argument': truncation from 'int' to 'char'
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(148): warning C4309: 'argument': truncation of constant value
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(155): warning C4305: 'argument': truncation from 'int' to 'char'
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(155): warning C4309: 'argument': truncation of constant value
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(158): warning C4305: 'argument': truncation from 'int' to 'char'
+d:\visualstudio\tictactoegame\tictactoe\tictactoegame\tictactoegame\gamecaro.cpp(158): warning C4309: 'argument': truncation of constant value
   TicTacToeGame.vcxproj -> D:\VISUALSTUDIO\TicTacToeGame\TicTacToe\TicTacToeGame\Debug\TicTacToeGame.exe
   TicTacToeGame.vcxproj -> D:\VISUALSTUDIO\TicTacToeGame\TicTacToe\TicTacToeGame\Debug\TicTacToeGame.pdb (Partial PDB)
