@@ -3,17 +3,17 @@
 using namespace std;
 
 void drawBoard(char board[3][3]);
-void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10], string result);
+void startGame(char board[3][3], char nameOfPlayer1[20], char nameOfPlayer2[20], string result);
 bool check(char board[3][3], int a, int b);
 int gameStatus(char board[3][3]);
 
 void drawBoard(char board[3][3]) {
-	cout << "____" << " " << "____" << " " << "____" << endl;
+	cout << " _____" << " " << "_____" << " " << "_____" << endl;
 	for (int i = 0; i<3; i++)
 		{
-			//cout <<"    "<< "|" << "    " << "|" << "    "<<endl;
-			cout <<"  "<<board[i][0]<<" "<<"|"<<"  "<<board[i][1]<<" "<<"|"<<"  "<<board[i][2]<<" "<<endl;
-			cout << "____" << "|" << "____" << "|" << "____" << endl;
+			cout <<"|" << "     " << "|" << "     " << "|" << "     " << "|" << endl;
+			cout << "|" <<"  "<<board[i][0]<<"  "<<"|"<<"  "<<board[i][1]<<"  "<<"|"<<"  "<<board[i][2]<<"  "<< "|"<<endl;
+			cout << "|" << "_____" << "|" << "_____" << "|" << "_____" << "|" << endl;
 		}
 }
 
@@ -92,7 +92,7 @@ int gameStatus(char board[3][3]) {
 	return win;
 }
 
-void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10], string result) {
+void startGame(char board[3][3], char nameOfPlayer1[20], char nameOfPlayer2[20], string result) {
 	int player = 1;
 	int position, row, column;
 	int count = 0;
@@ -167,24 +167,30 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10],
 int main() {
 
 	char choice, confirm;
-	static char nameOfPlayer1[10]; 
-	static char nameOfPlayer2[10];
+	static char nameOfPlayer1[20]; 
+	static char nameOfPlayer2[20];
 	static char board[3][3] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
 	static string result = "playing";
 
-	do {
+	
 	system("cls");
 	cout << "Welcome To Tic-tac-toe game! Play with your way!" << endl;
 	cout << "If you find any problem, please contact john.nguyen@gameloft.com" << endl;
 
 	cout << "SELECT YOUR MODE (1 - PLAY GAME, OTHERS - EXIT GAME): "; cin >> choice;
 
+	cin.ignore();
+	cout << "Enter Player 1 Name: "; cin.getline(nameOfPlayer1,20) ;
+	cout << "Enter Player 2 Name: "; cin.getline(nameOfPlayer2,20);	
+	do {
+		system("cls");
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				board[i][j] = ' ';
+
 		switch (choice)
 		{
 		case '1':
-			cout << "Enter Player 1 Name: "; cin >> nameOfPlayer1;
-			cout << "Enter Player 2 Name: "; cin >> nameOfPlayer2;
-
 			drawBoard(board);
 			startGame(board, nameOfPlayer1, nameOfPlayer2, result);
 			break;
