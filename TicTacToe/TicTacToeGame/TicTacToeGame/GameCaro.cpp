@@ -26,22 +26,69 @@ int gameStatus(char board[3][3]) {
 	int win = 0;
 	if (win == 0) {
 		for (int i = 0; i < 3; i++) {
-			if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] == 'O')
-				win = 1;
-			if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] == 'X')
-				win = 2;
+			switch (board[i][0])
+			{
+			case 'O':
+				if (board[i][0] == board[i][1] && board[i][1] == board[i][2])
+					win = 1;
+				break;
+			case 'X':
+				if (board[i][0] == board[i][1] && board[i][1] == board[i][2])
+					win = 2;
+				break;
+			default:
+				break;
+			}
 		}
 	
-		for (int j = 0; j < 3; j++) {
-			if (board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] == 'O')
-				win = 3;
-			if (board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] == 'X')
-				win = 4;
-		}
-	}
-	else if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) win = 5;
-	else if (board[0][2] == board[1][1] && board[2][0] == board[1][1]) win = 6;
-	
+		if (win == 0) {
+			for (int j = 0; j < 3; j++) {
+				switch (board[0][j])
+				{
+				case 'O':
+					if (board[0][j] == board[1][j] && board[1][j] == board[2][j])
+						win = 1;
+					break;
+				case 'X':
+					if (board[0][j] == board[1][j] && board[1][j] == board[2][j])
+						win = 2;
+					break;
+				default:
+					break;
+				}
+			}
+		
+		if (win == 0) {
+				switch (board[0][0])
+				{
+				case 'O':
+					if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
+						win = 1;
+					break;
+				case 'X':
+					if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
+						win = 2;
+					break;
+				default:
+					break;
+				}
+		
+		
+		if (win == 0)
+			switch (board[0][2])
+			{
+			case 'O':
+				if (board[0][2] == board[1][1] && board[2][0] == board[1][1])
+					win = 1;
+				break;
+			case 'X':
+				if (board[0][2] == board[1][1] && board[2][0] == board[1][1])
+					win = 2;
+				break;
+			default:
+				break;
+			}
+	}}}
 	return win;
 }
 
@@ -54,21 +101,9 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 
 	do
 	{
-		switch (gameStatus(board))
+		switch (player)
 		{
-		case 1: cout << "Player 1 win!" << endl;
-			break;
-		case 2: cout << "Player 2 win!" << endl;
-			break;
-		case 3: cout << "Player 1 win!" << endl;
-			break;
-		case 4: cout << "Player 2 win!" << endl;
-			break;
-		default:
-			break;
-		}
-
-		if (player == 1) {
+		case 1:
 			cout << "Your turn " << nameOfPlayer1 << " - O: ";
 			cin >> position;
 			
@@ -80,14 +115,8 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 
 			count++;
 			player++;
-		}
-
-		if (count == 9) {
-			cout << "Draw game"<<endl;
 			break;
-		}
-
-		if (player == 2) {
+		case 2:
 			cout << "Your turn " << nameOfPlayer2 << " - X: ";
 			cin >> position;
 
@@ -97,13 +126,28 @@ void startGame(char board[3][3], char nameOfPlayer1[10], char nameOfPlayer2[10])
 			system("cls");
 			drawBoard(board);
 
-			/*if (gameStatus(board)==true) {
-				cout<<"Player 2 win"<<endl;
-				break;
-			}*/
 			count++;
 			player--;
+			break;
 		}
+
+		if (count == 9) {
+			cout << "DRAW GAME!!!"<<endl;
+			break;
+		}
+
+		switch (gameStatus(board))
+			{
+			case 1: cout << "PLAYER 1 WIN!!!" << endl;
+				result = 'win';
+				break;
+			case 2: cout << "PLAYER 2 WIN!!!" << endl;
+				result = 'win';
+				break;
+			default:
+				break;
+			}
+
 	} while (result == "playing");
 }
 
