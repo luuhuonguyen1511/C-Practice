@@ -13,7 +13,7 @@ public:
 	int GetX();
 	void SetY(int);
 	int GetY();
-	float Distance(MyPoint);
+	float Distance(MyPoint*);
 
 private:
 	int mPosX;

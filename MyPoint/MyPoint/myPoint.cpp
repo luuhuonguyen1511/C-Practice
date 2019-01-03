@@ -6,13 +6,14 @@ using namespace std;
 
 MyPoint::MyPoint()
 {
-
+	mPosX = 0;
+	mPosY = 0;
 }
 
 MyPoint::MyPoint(int mPosX, int mPosY) 
 {
-	mPosX = 0;
-	mPosY = 0;
+	this->mPosX = mPosX;
+	this->mPosY = mPosY;
 }
 
 MyPoint:: ~MyPoint()
@@ -44,7 +45,7 @@ int MyPoint::GetY()
 	return mPosY;
 }
 
-float MyPoint::Distance(MyPoint p)
+float MyPoint::Distance(MyPoint *p)
 {
 	return sqrt(pow(p.mPosX - mPosX, 2) + pow(p.mPosY - mPosY, 2));
 }
