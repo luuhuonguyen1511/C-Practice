@@ -5,13 +5,13 @@
 
 FluVirus::FluVirus()
 {
-	DoBorn();
-	InitResistance();
+	//DoBorn();
+	//InitResistance();
 }
 	
 FluVirus::~FluVirus()
 {
-	DoDie();
+	//DoDie();
 }
 
 FluVirus::FluVirus(FluVirus *flu)
@@ -24,6 +24,7 @@ FluVirus::FluVirus(FluVirus *flu)
 void FluVirus::DoBorn()
 {
 	this->LoadADNInformation();
+	std::cout << m_dna;
 	
 	enum Color {
 		RED,

@@ -26,7 +26,7 @@ void Virus::LoadADNInformation()
 
 		const char* str_convert = line.c_str();
 		
-		m_dna = const_cast<char*> (str_convert);
+		m_dna = const_cast<char*> (str_convert) ;
 	}
 	file.close();
 }

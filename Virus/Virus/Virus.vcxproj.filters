@@ -32,5 +32,11 @@
     <ClCompile Include="FluVirus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dengue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
