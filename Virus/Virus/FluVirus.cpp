@@ -11,13 +11,11 @@ FluVirus::FluVirus()
 	
 FluVirus::~FluVirus()
 {
-	//DoDie();
+	DoDie();
 }
 
-FluVirus::FluVirus(FluVirus *flu)
+FluVirus::FluVirus(FluVirus *flu) : Virus (flu)
 {
-	this->m_dna = flu->m_dna;
-	this->m_resistance = flu->m_resistance;
 	this->m_color = flu->m_color;
 }
 
@@ -26,11 +24,6 @@ void FluVirus::DoBorn()
 	this->LoadADNInformation();
 	//std::cout << m_dna;
 	
-	enum Color {
-		RED,
-		BLUE
-	};
-
 	this->m_color = rand() % 2;
 }
 
@@ -58,5 +51,5 @@ int FluVirus::InitResistance()
 }
 
 void FluVirus::DoDie() {
-	delete this;
+	
 }

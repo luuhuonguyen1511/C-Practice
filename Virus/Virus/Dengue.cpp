@@ -16,10 +16,8 @@ Dengue::~Dengue()
 	DoDie();
 }
 
-Dengue::Dengue(Dengue *den)
+Dengue::Dengue(Dengue *den) : Virus (den)
 {
-	this->m_dna = den->m_dna;
-	this->m_resistance = den->m_resistance;
 	for (int i = 0; i < 4; i++) {
 		this->m_protein[i] = den->m_protein[i];
 	}
@@ -82,5 +80,5 @@ int Dengue::InitResistance()
 }
 
 void Dengue::DoDie() {
-	delete this;
+	
 }

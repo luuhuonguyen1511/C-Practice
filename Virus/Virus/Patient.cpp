@@ -79,7 +79,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 			i++;
 		}
 		i = 0;
-		while (i != this->m_virusList.size() - 1)
+		while (i != this->m_virusList.size())
 		{
 			total_virus_resistance += m_virusList[i]->GetResistance();
 			if (this->m_resistance < total_virus_resistance)
@@ -89,12 +89,15 @@ void Patient::TakeMedicine(int medicine_resistance)
 			}
 			i++;
 		}
-		std::cout << total_virus_resistance << "\n";
+		std::cout <<"Total virus resistance: "<< total_virus_resistance << "\n";
 	};
 }
 
 void Patient::DoDie()
 {
+	for (int i = 0; i < m_virusList.size(); i++) {
+		delete m_virusList[i];
+	}
 	this->m_virusList.clear();
 	this->m_state = 0;
 	std::cout << "Patient died :)))\n";
@@ -107,6 +110,10 @@ int Patient::GetState()
 
 void Patient::DeleteListVirus()
 {
+	for (int i = 0; i < m_virusList.size(); i++) {
+		delete m_virusList[i];
+	}
+
 	this->m_virusList.clear();
 	std::cout << "Delete all virus\n";
 }

@@ -4,7 +4,11 @@
 #include <string.h>
 #include "Virus.h"
 
-Virus::Virus(){}
+Virus::Virus(){
+	m_dna = new char[225];
+	//LoadADNInformation();
+	//std::cout << m_dna;
+}
 
 Virus::~Virus() {}
 
@@ -20,14 +24,14 @@ void Virus::LoadADNInformation()
 	file.open("ATGX.bin", std::ios::in);
 
 	std::string line;
-
-	while (!file.eof()) {
+	file >> m_dna;
+	/*while (!file.eof()) {
 		getline(file, line);
 
 		const char* str_convert = line.c_str();
 		
 		m_dna = const_cast<char*> (str_convert) ;
-	}
+	}*/
 	file.close();
 }
 
