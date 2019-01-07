@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string.h>
+#include <string>
 #include "Dengue.h"
 #include "Virus.h"
 
@@ -32,15 +34,23 @@ void Dengue::DoBorn()
 		NS5,
 		E
 	};
-
+	
+	std::string temp;
+	
 	Type protein = static_cast<Type>(rand() % E);
 	switch (protein)
 	{
-	case 'NS3': m_protein[4] = 'NS3';
+	case 0: 
+		temp = "NS3";
+		strcpy_s(m_protein, temp.c_str());
 		break;
-	case 'NS5': m_protein[4] = 'NS5';
+	case 1: 
+		temp = "NS5";
+		strcpy_s(m_protein, temp.c_str());
 		break;
-	case 'E': m_protein[4] = 'E';
+	case 2: 
+		temp = "E";
+		strcpy_s(m_protein, temp.c_str());
 		break;
 	}
 }
@@ -57,15 +67,15 @@ std::vector<Virus*> Dengue::DoClone()
 
 int Dengue::InitResistance()
 {
-	switch (m_protein[4])
+	switch (m_protein[2])
 	{
-	case 'NS3':
+	case '3':
 		this->m_resistance = 1 + (rand() % (int)(10 - 1) + 1);
 		break;
-	case 'NS5':
+	case '5':
 		this->m_resistance = 11 + (rand() % (int)(20 - 11) + 1);
 		break;
-	case 'E': this->m_resistance = 21 + (rand() % (int)(30 - 21) + 1);
+	case '0': this->m_resistance = 21 + (rand() % (int)(30 - 21) + 1);
 		break;
 	}
 	return m_resistance;

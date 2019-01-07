@@ -8,6 +8,9 @@ public:
 	Virus(Virus *v);
 	void LoadADNInformation();
 	int ReduceResistance(int);
+	int GetResistance() {
+		return m_resistance;
+	}
 
 	virtual void DoBorn() = 0;
 	virtual std::vector<Virus*> DoClone() = 0;

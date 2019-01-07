@@ -112,12 +112,14 @@
   <ItemGroup>
     <ClInclude Include="Dengue.h" />
     <ClInclude Include="FluVirus.h" />
+    <ClInclude Include="Patient.h" />
     <ClInclude Include="Virus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dengue.cpp" />
     <ClCompile Include="FluVirus.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="Virus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -5,8 +5,8 @@
 
 FluVirus::FluVirus()
 {
-	//DoBorn();
-	//InitResistance();
+	DoBorn();
+	InitResistance();
 }
 	
 FluVirus::~FluVirus()
@@ -24,7 +24,7 @@ FluVirus::FluVirus(FluVirus *flu)
 void FluVirus::DoBorn()
 {
 	this->LoadADNInformation();
-	std::cout << m_dna;
+	//std::cout << m_dna;
 	
 	enum Color {
 		RED,
@@ -47,10 +47,10 @@ int FluVirus::InitResistance()
 {
 	switch (m_color)
 	{
-	case '0':
+	case 0:
 		this->m_resistance = 10 + (rand() % (int)(20 - 10) + 1);
 		break;
-	case '1':
+	case 1:
 		this->m_resistance = 10 + (rand() % (int)(15 - 10) + 1);
 		break;
 	}
