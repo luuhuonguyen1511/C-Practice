@@ -6,13 +6,16 @@
 #include "FluVirus.h"
 #include "Dengue.h"
 
+
+
 Patient::Patient() {
-	
 	InitResistance();
 	DoStart();
 }
 
-Patient::~Patient() {}
+Patient::~Patient() {
+	DoDie();
+}
 
 int Patient::InitResistance()
 {
@@ -21,7 +24,7 @@ int Patient::InitResistance()
 
 void Patient::DoStart()
 {
-	
+
 	srand(time(0));
 	this->m_state = 1;
 	int virusNumber = 10 + (rand() % (int)(20 - 10) + 1);
@@ -36,7 +39,7 @@ void Patient::DoStart()
 
 			Virus* flu = new FluVirus();
 			this->m_virusList.push_back(flu);
-			//std::cout << "flu ";
+			
 			break;
 		}
 
@@ -44,7 +47,7 @@ void Patient::DoStart()
 		{
 			Virus* den = new Dengue();
 			this->m_virusList.push_back(den);
-			//std::cout << "den ";
+			
 			break;
 		}
 
@@ -58,47 +61,57 @@ void Patient::TakeMedicine(int medicine_resistance)
 	int i = 0;
 	if (m_state == 1) {
 		int virus_resistance = 0;
-		while (i != this->m_virusList.size() - 1) {
+		while (i != this->m_virusList.size() ) {
 			virus_resistance = m_virusList[i]->ReduceResistance(medicine_resistance);
 			if (virus_resistance < 1) {
+				delete m_virusList[i];
 				m_virusList.erase(m_virusList.begin() + i);
 				i--;
 			}
 			i++;
 		}
-		i = 0;
-		int size = this->m_virusList.size() - 1;
-		while (i != size) {
-			int j = 0;
-			std::vector<Virus*> list;
-			list = m_virusList[i]->DoClone();
-			while (j != list.size()){
-				m_virusList.push_back(list[j]);	
-				j++;
+		if (!m_virusList.empty()) {
+			i = 0;
+			int size = this->m_virusList.size() - 1;
+			while (i != size) {
+				int j = 0;
+				std::vector<Virus*> list ;
+				list = m_virusList[i]->DoClone();
+				for each (auto var in list)
+				{
+					m_virusList.push_back(var);
+				}
+				i++;
+				//delete list;
 			}
-			i++;
-		}
-		i = 0;
-		while (i != this->m_virusList.size())
-		{
-			total_virus_resistance += m_virusList[i]->GetResistance();
-			if (this->m_resistance < total_virus_resistance)
+
+			i = 0;
+			while (i != this->m_virusList.size() - 1)
 			{
-				DoDie();
-				break;
+				total_virus_resistance += m_virusList[i]->GetResistance();
+				if (this->m_resistance < total_virus_resistance)
+				{
+					this->DoDie();
+					break;
+				}
+				i++;
 			}
-			i++;
+
+			std::cout << "Total virus resistance: " << total_virus_resistance << "\n";
+
+			if (total_virus_resistance <= medicine_resistance)
+			{
+				std::cout << "All virus died:)))\n";
+				this->DeleteListVirus();
+			}
 		}
-		std::cout <<"Total virus resistance: "<< total_virus_resistance << "\n";
+		else this->DeleteListVirus();
 	};
 }
 
 void Patient::DoDie()
 {
-	for (int i = 0; i < m_virusList.size(); i++) {
-		delete m_virusList[i];
-	}
-	this->m_virusList.clear();
+	DeleteListVirus();
 	this->m_state = 0;
 	std::cout << "Patient died :)))\n";
 }
@@ -115,5 +128,6 @@ void Patient::DeleteListVirus()
 	}
 
 	this->m_virusList.clear();
+
 	std::cout << "Delete all virus\n";
 }

@@ -22,7 +22,6 @@ FluVirus::FluVirus(FluVirus *flu) : Virus (flu)
 void FluVirus::DoBorn()
 {
 	this->LoadADNInformation();
-	//std::cout << m_dna;
 	
 	this->m_color = rand() % 2;
 }
